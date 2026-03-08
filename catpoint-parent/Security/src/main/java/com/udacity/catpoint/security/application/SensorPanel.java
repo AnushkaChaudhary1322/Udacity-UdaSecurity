@@ -5,6 +5,7 @@ import com.udacity.catpoint.security.data.Sensor;
 import com.udacity.catpoint.security.data.SensorType;
 import com.udacity.catpoint.security.service.SecurityService;
 import com.udacity.catpoint.security.service.StyleService;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
@@ -13,6 +14,7 @@ import javax.swing.*;
  * Panel that allows users to add sensors to their system. Sensors may be
  * manually set to "active" and "inactive" to test the system.
  */
+@SuppressFBWarnings("CT_CONSTRUCTOR_THROW")
 public class SensorPanel extends JPanel implements StatusListener{
 
     private SecurityService securityService;
@@ -27,6 +29,7 @@ public class SensorPanel extends JPanel implements StatusListener{
     private JPanel sensorListPanel;
     private JPanel newSensorPanel;
 
+    @SuppressFBWarnings("EI_EXPOSE_REP2")
     public SensorPanel(SecurityService securityService) {
         super();
         setLayout(new MigLayout());

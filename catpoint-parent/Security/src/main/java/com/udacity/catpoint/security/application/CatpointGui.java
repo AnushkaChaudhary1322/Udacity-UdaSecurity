@@ -1,5 +1,6 @@
 package com.udacity.catpoint.security.application;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import com.udacity.catpoint.security.data.PretendDatabaseSecurityRepositoryImpl;
 import com.udacity.catpoint.security.data.SecurityRepository;
 import com.udacity.catpoint.image.service.FakeImageService;
@@ -13,10 +14,11 @@ import javax.swing.*;
  * Not using any dependency injection framework thas is why  this class handles constructing
  * all our dependencies and providing them to other classes as necessary.
  */
+@SuppressFBWarnings({"EI_EXPOSE_REP", "EI_EXPOSE_REP2", "CT_CONSTRUCTOR_THROW"})
 public class CatpointGui extends JFrame {
-    private SecurityRepository securityRepository = new PretendDatabaseSecurityRepositoryImpl();
-    private FakeImageService imageService = new FakeImageService();
-    private SecurityService securityService = new SecurityService(securityRepository, imageService);
+    private transient SecurityRepository securityRepository = new PretendDatabaseSecurityRepositoryImpl();
+    private transient FakeImageService imageService = new FakeImageService();
+    private transient SecurityService securityService = new SecurityService(securityRepository, imageService);
     private DisplayPanel displayPanel = new DisplayPanel(securityService);
     private ControlPanel controlPanel = new ControlPanel(securityService);
     private SensorPanel sensorPanel = new SensorPanel(securityService);

@@ -2,10 +2,11 @@ package com.udacity.catpoint.security.data;
 
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
-
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.lang.reflect.Type;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.HashSet;
 import java.util.prefs.Preferences;
 
 /**
@@ -13,6 +14,7 @@ import java.util.prefs.Preferences;
  * memory and writes it to user preferences between app loads. This implementation is
  * intentionally a little hard to use in unit tests, so watch out!
  */
+@SuppressFBWarnings("CT_CONSTRUCTOR_THROW")
 public class PretendDatabaseSecurityRepositoryImpl implements SecurityRepository{
 
     private Set<Sensor> sensors;
@@ -77,7 +79,7 @@ public class PretendDatabaseSecurityRepositoryImpl implements SecurityRepository
 
     @Override
     public Set<Sensor> getSensors() {
-        return sensors;
+        return new HashSet<>(sensors);
     }
 
     @Override

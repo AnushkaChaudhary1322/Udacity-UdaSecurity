@@ -3,6 +3,7 @@ package com.udacity.catpoint.security.application;
 import com.udacity.catpoint.security.data.ArmingStatus;
 import com.udacity.catpoint.security.service.SecurityService;
 import com.udacity.catpoint.security.service.StyleService;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import java.util.Arrays;
@@ -17,7 +18,7 @@ public class ControlPanel extends JPanel {
     private SecurityService securityService;
     private Map<ArmingStatus, JButton> buttonMap;
 
-
+    @SuppressFBWarnings("EI_EXPOSE_REP2")
     public ControlPanel(SecurityService securityService) {
         super();
         setLayout(new MigLayout());
