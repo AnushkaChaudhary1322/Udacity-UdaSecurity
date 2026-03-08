@@ -1,0 +1,47 @@
+package com.udacity.catpoint.security.application;
+
+import com.udacity.catpoint.security.data.AlarmStatus;
+import com.udacity.catpoint.security.service.SecurityService;
+import com.udacity.catpoint.security.service.StyleService;
+import net.miginfocom.swing.MigLayout;
+import javax.swing.*;
+
+/**
+ * Displays the current status of the system.
+ */
+public class DisplayPanel extends JPanel implements StatusListener {
+
+    private JLabel currentStatusLabel;
+
+    public DisplayPanel(SecurityService securityService) {
+        super();
+        setLayout(new MigLayout());
+        securityService.addStatusListener(this);
+        JLabel panelLabel = new JLabel("Very Secure Home Security");
+        JLabel systemStatusLabel = new JLabel("System Status:");
+        currentStatusLabel = new JLabel();
+        panelLabel.setFont(StyleService.HEADING_FONT);
+        notify(securityService.getAlarmStatus());
+        add(panelLabel, "span 2, wrap");
+        add(systemStatusLabel);
+        add(currentStatusLabel, "wrap");
+
+    }
+
+    @Override
+    public void notify(AlarmStatus status) {
+        currentStatusLabel.setText(status.getDescription());
+        currentStatusLabel.setBackground(status.getColor());
+        currentStatusLabel.setOpaque(true);
+    }
+
+    @Override
+    public void catDetected(boolean catDetected) {
+        // behavior is not necessary
+    }
+
+    @Override
+    public void sensorStatusChanged() {
+        // behavior is not necessary
+    }
+}
