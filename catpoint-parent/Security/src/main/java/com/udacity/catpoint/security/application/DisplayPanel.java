@@ -7,7 +7,8 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 
 /**
- * Displays the current status of the system.
+ * Displays the current status of the system. Implements the StatusListener
+ * interface so that it can be notified whenever the status changes.
  */
 public class DisplayPanel extends JPanel implements StatusListener {
 
